@@ -1,0 +1,168 @@
+.no-caret {
+  /* user-select: none; */
+  caret-color: transparent;
+}
+
+input,
+textarea,
+select {
+  width: 70%;
+  padding: 0.6rem 0.75rem;
+
+  font: inherit;
+  font-size: 1rem;
+  color: #111827; /* near-black */
+
+  background-color: #ffffff;
+  border: 1px solid #d1d5db; /* light gray */
+  border-radius: 6px;
+
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #2563eb; /* blue */
+  box-shadow: 0 0 0 2px rgba(222, 223, 224, 0.774);
+}
+
+::placeholder {
+  color: #9ca3af;
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: #f9fafb;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.form-component {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-title {
+  margin-top: 10%;
+}
+
+.input-error {
+  border-color: #dc2626;
+}
+
+.input-error:focus {
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2);
+}
+
+.form-container {
+  width: 90%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.not-selectable {
+  user-select: none;
+}
+
+.hidden-caret {
+  caret-color: transparent;
+}
+
+.form-input-labels {
+  font-size: larger;
+  font-weight: 500;
+  user-select: none;
+  caret-color: transparent;
+  width: 25%;
+  max-width: 200px;
+}
+
+.form-input-elements {
+  margin-block: 1rem;
+}
+
+.form-field-container {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: space-between;
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-visibility-toggle-button {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 38%;
+  color: rgb(110, 110, 110);
+  right: 1%;
+
+  font-size: larger;
+}
+
+.password-visibility-toggle-button:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.background {
+  background-color: rgba(0, 128, 0, 0.226);
+}
+
+.border {
+  border: 2px solid green;
+}
+
+.field-container {
+  display: flex;
+  width: 100%;
+  max-width: 450px;
+}
+
+.field-container input {
+  width: 100%;
+}
+
+.form-parent-container {
+  caret-color: transparent;
+  min-height: 90vh;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+form .form-action-button {
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: transparent;
+  font-weight: 700;
+  border-color: white;
+  margin-top: 2rem;
+  min-width: 5rem;
+  width: 20%;
+  max-width: 9rem;
+  margin-inline: auto;
+}
+
+form .form-action-button:hover {
+  background-color: white;
+  cursor: pointer;
+  color: rgb(66, 66, 66);
+}
+
+.switch-auth-form {
+  margin: 2rem;
+}

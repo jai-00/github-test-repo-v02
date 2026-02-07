@@ -15,7 +15,7 @@ function App() {
       ),
     },
     {
-      path: "/signup",
+      path: "/auth",
       element: <Auth />,
     },
   ]);

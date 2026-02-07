@@ -1,16 +1,20 @@
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getToken } from "./token";
+import { useEffect } from "react";
 
 type ProtectedComponentProp = {
   children?: React.ReactNode;
 };
 
 function ProtectedComponent({ children }: ProtectedComponentProp) {
+  const navigate = useNavigate();
   const token = getToken();
 
-  if (!token) {
-    return <Navigate to="/signup" replace />;
-  }
+  useEffect(() => {
+    if (!token) {
+      navigate("/auth");
+    }
+  }, [navigate, token]);
 
   return children;
 }
