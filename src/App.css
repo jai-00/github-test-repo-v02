@@ -62,7 +62,7 @@ select:disabled {
 
 .form-container {
   width: 90%;
-  max-width: 600px;
+  max-width: 720px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,11 +77,12 @@ select:disabled {
 }
 
 .form-input-labels {
+  display: flex;
   font-size: larger;
   font-weight: 500;
   user-select: none;
   caret-color: transparent;
-  width: 25%;
+  width: 30%;
   max-width: 200px;
 }
 
@@ -120,14 +121,23 @@ select:disabled {
   background-color: rgba(0, 128, 0, 0.226);
 }
 
-.border {
+.border-green {
   border: 2px solid green;
+}
+
+.border-red {
+  border: 2px solid red;
+}
+
+.border-yellow {
+  border: 2px solid yellow;
 }
 
 .field-container {
   display: flex;
-  width: 100%;
+  width: 70%;
   max-width: 450px;
+  justify-content: space-between;
 }
 
 .field-container input {
@@ -165,4 +175,54 @@ form .form-action-button:hover {
 
 .switch-auth-form {
   margin: 2rem;
+}
+
+.radio-input-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  /* font-size: larger; */
+  font-weight: 500;
+  margin-left: 0;
+  max-width: 99%;
+}
+
+.radio-input-option-container {
+  display: flex;
+  width: 75%;
+  justify-content: space-between;
+}
+
+.radio-input-option-container label {
+  display: flex;
+}
+
+.field-isRequired {
+  margin-right: 3%;
+  color: red;
+  font-weight: 100;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.form-input-label-name {
+  width: 100%;
+}
+
+.field-colon {
+  margin-left: 3%;
+}
+
+.field-container label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.field-isNotRequired {
+  margin-right: 3%;
+  color: transparent;
+}
+
+.radio-input-options {
+  cursor: pointer;
 }

@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 type PasswordInput_Form_Prop = {
   children?: React.ReactNode;
   label: string;
+  name: string;
 };
 
 function PasswordInput_Form(props: PasswordInput_Form_Prop) {
@@ -14,15 +15,23 @@ function PasswordInput_Form(props: PasswordInput_Form_Prop) {
   }
   return (
     <div className="form-field-container">
-      <label htmlFor="password" className="form-input-labels">
-        * {props.label && "Password"} :
+      {/* <label htmlFor={props.name} className="form-input-labels">
+        * {props.label || "Password"} :
+      </label> */}
+      <label htmlFor={props.name} className="form-input-labels ">
+        <div className="field-isRequired ">
+          <span>*</span>
+        </div>
+
+        <div className="form-input-label-name ">{props.label}</div>
+        <div className="field-colon ">:</div>
       </label>
       <div className="field-container password-container">
         <input
           type={isPasswordVisible ? "text" : "password"}
-          id="password"
+          id={props.name}
           className="form-input-elements"
-          name="password"
+          name={props.name}
           placeholder="Enter your password..."
           required
           autoComplete="current-password"

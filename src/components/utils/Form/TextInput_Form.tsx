@@ -11,9 +11,15 @@ function TextInput_Form(props: TextInput_Form_Prop) {
   const isRequired: boolean = props.isRequired || false;
   return (
     <div className="form-field-container ">
-      <label htmlFor={props.fieldName} className="form-input-labels">
-        {isRequired && " * "}
-        {props.label} :
+      <label htmlFor={props.fieldName} className="form-input-labels ">
+        <div
+          className={!isRequired ? "field-isNotRequired" : "field-isRequired"}
+        >
+          <span>*</span>
+        </div>
+        {/* {isRequired && " * "} */}
+        <div className="form-input-label-name ">{props.label}</div>
+        <div className="field-colon ">:</div>
       </label>
       <div className="field-container ">
         <input
