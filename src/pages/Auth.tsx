@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
+import { Form, Link } from "react-router-dom";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const AUTH_MODES: string[] = ["login", "signup"];
@@ -20,8 +21,27 @@ function Auth() {
 
   const isLogin: boolean = mode === "login";
 
+  // return <>{isLogin ? <LoginForm /> : <SignupForm />}</>;
   return (
-    <>{isLogin ? <LoginForm isLogin /> : <SignupForm isSignup={!isLogin} />}</>
+    <div className="form-parent-container">
+      <div className="form-container ">
+        <h1 className="not-selectable hidden-caret form-title ">
+          {isLogin ? "Login Form" : "Signup Form"}
+        </h1>
+        <Form method="post" className="form-component ">
+          {isLogin ? <LoginForm /> : <SignupForm />}
+        </Form>
+      </div>
+      <div className="switch-auth-form">
+        {isLogin ? (
+          <Link to={"/auth?mode=signup"}>Create a new account</Link>
+        ) : (
+          <p>
+            Already have an account ? <Link to={"/auth?mode=login"}>Login</Link>
+          </p>
+        )}
+      </div>
+    </div>
   );
 }
 

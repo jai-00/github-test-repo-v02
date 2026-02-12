@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
-import tokenAuthLoader from "./loaders/RootComponentLoader";
+import { loader as tokenAuthLoader } from "./loaders/RootComponentRouterFunctions";
 
 import Dashboard from "./pages/Dashboard";
 import Auth from "./pages/Auth";

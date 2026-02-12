@@ -8,15 +8,15 @@ export function addAuthData(){
 
 }
 
-export function authenticateUser(){
-
+export async function authenticateUser(){
+    return new Promise(resolve=> setTimeout(resolve, 1000));
 }
 
 
 export function demoUserAuth(): authPasswordType   {
 
-    const randomEmailId: string = "demoMail@demoMail.com";
-    const randomPassword: string = "demo@123"
+    const randomEmailId: string = "demoUser@demoMail.com";
+    const randomPassword: string = "demoUser@123"
 
     const demoAuthData: authPasswordType = {emailId: randomEmailId, password: randomPassword};
     passwordAuthData.push(demoAuthData);

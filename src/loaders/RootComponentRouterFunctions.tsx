@@ -1,6 +1,8 @@
 import { getToken } from "../utils/token";
 
-export default function loader() {
+export function loader() {
   const token = getToken();
   return token;
 }
+
+export async function action() {}
