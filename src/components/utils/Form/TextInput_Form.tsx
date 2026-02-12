@@ -5,6 +5,7 @@ type TextInput_Form_Prop = {
   inputType?: string;
   label: string;
   isRequired: boolean;
+  value?: string;
 };
 
 function TextInput_Form(props: TextInput_Form_Prop) {
@@ -30,6 +31,7 @@ function TextInput_Form(props: TextInput_Form_Prop) {
           placeholder={props.placeholder || `Enter your ${props.fieldName}...`}
           required={isRequired}
           autoComplete={props.fieldName}
+          defaultValue={props.value ? props.value : ""}
         />
       </div>
     </div>

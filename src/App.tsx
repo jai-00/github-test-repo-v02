@@ -1,22 +1,28 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
-import ProtectedComponent from "./utils/ProtectedComponent";
+import tokenAuthLoader from "./loaders/RootComponentLoader";
+
 import Dashboard from "./pages/Dashboard";
 import Auth from "./pages/Auth";
+import RootComponent from "./pages/RootComponent";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: (
-        <ProtectedComponent>
-          <Dashboard />
-        </ProtectedComponent>
-      ),
-    },
-    {
-      path: "/auth",
-      element: <Auth />,
+      loader: tokenAuthLoader,
+      element: <RootComponent />,
+      children: [
+        {
+          index: true,
+          path: "/dashboard",
+          element: <Dashboard />,
+        },
+        {
+          path: "auth",
+          element: <Auth />,
+        },
+      ],
     },
   ]);
 

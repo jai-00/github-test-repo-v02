@@ -226,3 +226,9 @@ form .form-action-button:hover {
 .radio-input-options {
   cursor: pointer;
 }
+
+.form-action-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

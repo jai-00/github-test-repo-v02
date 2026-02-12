@@ -5,6 +5,7 @@ type PasswordInput_Form_Prop = {
   children?: React.ReactNode;
   label: string;
   name: string;
+  value?: string;
 };
 
 function PasswordInput_Form(props: PasswordInput_Form_Prop) {
@@ -15,9 +16,6 @@ function PasswordInput_Form(props: PasswordInput_Form_Prop) {
   }
   return (
     <div className="form-field-container">
-      {/* <label htmlFor={props.name} className="form-input-labels">
-        * {props.label || "Password"} :
-      </label> */}
       <label htmlFor={props.name} className="form-input-labels ">
         <div className="field-isRequired ">
           <span>*</span>
@@ -35,6 +33,7 @@ function PasswordInput_Form(props: PasswordInput_Form_Prop) {
           placeholder="Enter your password..."
           required
           autoComplete="current-password"
+          defaultValue={props.value ? props.value : ""}
         />
         <button
           onClick={handlePasswordShow}

@@ -4,12 +4,7 @@ import PasswordInput_Form from "./utils/Form/PasswordInput_Form";
 import ActionButton_Form from "./utils/Form/ActionButton_Form";
 import RadioInput_Form from "./utils/Form/RadioInput_Form";
 
-type SignupFormProp = {
-  children?: React.ReactNode;
-  isSignup: boolean;
-};
-
-function SignupForm({ isSignup }: SignupFormProp) {
+function SignupForm() {
   return (
     <div className="form-parent-container">
       <div className="form-container">
@@ -37,11 +32,11 @@ function SignupForm({ isSignup }: SignupFormProp) {
         </Form>
       </div>
       <div className="switch-auth-form">
-        {isSignup && (
-          <p>
-            Already have an account ? <Link to={"/auth?mode=login"}>Login</Link>
-          </p>
-        )}
+        {/* {isSignup && ( */}
+        <p>
+          Already have an account ? <Link to={"/auth?mode=login"}>Login</Link>
+        </p>
+        {/* )} */}
       </div>
     </div>
   );
