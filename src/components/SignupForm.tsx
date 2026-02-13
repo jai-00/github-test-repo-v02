@@ -20,8 +20,9 @@ function SignupForm() {
       />
       <PasswordInput_Form label="Password" name="password" />
       <PasswordInput_Form label="Confirm Password" name="conf_Password" />
-
-      <ActionButton_Form text="Sign Up" />
+      <div className="form-action-button-container ">
+        <ActionButton_Form text="Sign Up" />
+      </div>
     </>
   );
 }

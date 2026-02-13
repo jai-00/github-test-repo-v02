@@ -5,11 +5,13 @@ import { demoUserAuth } from "../backend replica/authData";
 import { useState } from "react";
 
 function LoginForm() {
+  //state managing values for the input data in the form input fields
   const [userInputData, setUserInputData] = useState<{
     password: string;
     emailId: string;
   } | null>(null);
 
+  //Demo account login handler function
   function demoButtonClickHandler() {
     const { password, emailId } = demoUserAuth();
     setUserInputData({ password, emailId });
@@ -23,20 +25,23 @@ function LoginForm() {
         label="Email"
         value={userInputData?.emailId}
       />
+
       <PasswordInput_Form
         label="Password"
         name="password"
         value={userInputData?.password}
       />
-      <div className="form-action-button-container">
-        <ActionButton_Form text="Login" />
+
+      <div className="form-action-button-container ">
         <button
-          className="form-action-button"
+          className="form-action-button "
           type="button"
           onClick={demoButtonClickHandler}
         >
           Demo Account
         </button>
+
+        <ActionButton_Form text="Login" />
       </div>
     </>
   );
