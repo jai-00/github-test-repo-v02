@@ -3,7 +3,12 @@ import PasswordInput_Form from "./utils/Form/PasswordInput_Form";
 import ActionButton_Form from "./utils/Form/ActionButton_Form";
 import RadioInput_Form from "./utils/Form/RadioInput_Form";
 
-function SignupForm() {
+type signupFormProps = {
+  children?: React.ReactNode;
+  isSubmitting: boolean;
+};
+
+function SignupForm(props: signupFormProps) {
   return (
     <>
       <TextInput_Form fieldName="email" isRequired label="Email" />
@@ -21,7 +26,7 @@ function SignupForm() {
       <PasswordInput_Form label="Password" name="password" />
       <PasswordInput_Form label="Confirm Password" name="conf_Password" />
       <div className="form-action-button-container ">
-        <ActionButton_Form text="Sign Up" />
+        <ActionButton_Form text="Sign Up" isSubmitting={props.isSubmitting} />
       </div>
     </>
   );

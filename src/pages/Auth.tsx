@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useNavigation } from "react-router-dom";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const AUTH_MODES: string[] = ["login", "signup"];
@@ -10,6 +10,9 @@ function Auth() {
   const [searchParams] = useSearchParams();
   const mode: string | null = searchParams.get("mode");
   const navigate = useNavigate();
+  const navigation = useNavigation();
+
+  const isSubmitting = navigation.state === "submitting";
 
   useEffect(() => {
     if (!mode) {
@@ -29,7 +32,11 @@ function Auth() {
           {isLogin ? "Login Form" : "Signup Form"}
         </h1>
         <Form method="post" className="form-component ">
-          {isLogin ? <LoginForm /> : <SignupForm />}
+          {isLogin ? (
+            <LoginForm isSubmitting={isSubmitting} />
+          ) : (
+            <SignupForm isSubmitting={isSubmitting} />
+          )}
         </Form>
       </div>
       <div className="switch-auth-form">

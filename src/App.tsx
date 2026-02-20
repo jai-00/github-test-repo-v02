@@ -1,7 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
-import { loader as tokenAuthLoader } from "./loaders/RootComponentRouterFunctions";
-
+import {
+  loader as tokenAuthLoader,
+  // action as formSubmitAction,
+} from "./loaders and actions/RootComponentRouterFunctions";
+import { action as authRouterAction } from "./loaders and actions/AuthRouterFunctions";
+import { action as logoutAction } from "./loaders and actions/logoutPathFunction";
 import Dashboard from "./pages/Dashboard";
 import Auth from "./pages/Auth";
 import RootComponent from "./pages/RootComponent";
@@ -21,6 +25,11 @@ function App() {
         {
           path: "auth",
           element: <Auth />,
+          action: authRouterAction,
+        },
+        {
+          path: "/logout",
+          action: logoutAction,
         },
       ],
     },

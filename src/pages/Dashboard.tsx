@@ -1,14 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useSubmit } from "react-router-dom";
 
 function Dashboard() {
-  const navigate = useNavigate();
+  const submit = useSubmit();
   return (
     <>
       <button
         className="no-caret"
         onClick={() => {
-          localStorage.removeItem("token");
-          navigate("/auth");
+          submit(null, { action: "/logout", method: "post" });
         }}
       >
         Remove Authorization

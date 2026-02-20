@@ -167,6 +167,11 @@ form .form-action-button {
   margin-inline: 5%;
 }
 
+form .form-action-button-disabled {
+  background-color: rgb(113, 113, 113);
+  color: black;
+}
+
 form .form-action-button:hover {
   background-color: white;
   cursor: pointer;
