@@ -3,7 +3,11 @@ import { getToken } from "../utils/token";
 
 export function loader() {
   const token = getToken();
-  return token;
+
+  if (token) {
+    return redirect("/dashboard");
+  }
+  return redirect("/auth");
 }
 
 export async function action({ request }: ActionFunctionArgs) {

@@ -14,21 +14,23 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      loader: tokenAuthLoader,
+      // loader: tokenAuthLoader,
       element: <RootComponent />,
       children: [
+        { index: true, loader: tokenAuthLoader },
         {
-          index: true,
-          path: "/dashboard",
+          // index: true,
+          path: "dashboard",
           element: <Dashboard />,
         },
         {
           path: "auth",
           element: <Auth />,
+
           action: authRouterAction,
         },
         {
-          path: "/logout",
+          path: "logout",
           action: logoutAction,
         },
       ],
