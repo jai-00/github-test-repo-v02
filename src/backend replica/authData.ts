@@ -10,6 +10,8 @@ const identifier_localStorageToken = "localStorageToken";
 
 const storedValue = localStorage.getItem(identifier_localStorageToken);
 
+const delay = 1000; //in milliseconds so now approx: 1 sec delay
+
 export const tokenAuthData: authTokenType = storedValue
   ? JSON.parse(storedValue)
   : { tokens: [] };
@@ -130,7 +132,6 @@ export async function fetchFunction(
     //then send the token to the user along with the username
 
     const token = createFakeJWT(email);
-    const delay = 1000; //in milliseconds so now approx: 1 sec delay
 
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -145,8 +146,17 @@ export async function fetchFunction(
   }
 
   //  if (url !== "https://localhost:4000/login") {
-  return new Response("Not Found", {
-    status: 404,
+  // return new Response("Not Found", {
+  //   status: 404,
+  // });
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(
+        new Response(JSON.stringify("Not Found"), {
+          status: 404,
+        }),
+      );
+    }, delay);
   });
   // }
 }

@@ -9,6 +9,7 @@ import {
   // action as formSubmitAction,
 } from "./loaders and actions/RootComponentRouterFunctions";
 // import { action as authRouterAction } from "./loaders and actions/AuthRouterFunctions";
+import { action as loginRouteAction } from "./loaders and actions/loginRouteFunctions";
 import { action as logoutAction } from "./loaders and actions/logoutPathFunction";
 import Dashboard from "./pages/Dashboard";
 import Auth from "./pages/Auth";
@@ -49,6 +50,7 @@ function App() {
             {
               path: "login",
               element: <Login />,
+              action: loginRouteAction,
             },
             {
               path: "signup",
