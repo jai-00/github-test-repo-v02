@@ -9,7 +9,7 @@ function Login() {
   //state managing values for the input data in the form input fields
   const [userInputData, setUserInputData] = useState<{
     password: string;
-    emailId: string;
+    email: string;
   } | null>(null);
 
   //checking for submission state
@@ -18,8 +18,8 @@ function Login() {
 
   //Demo account login handler function
   function demoButtonClickHandler() {
-    const { password, emailId } = demoUserAuth();
-    setUserInputData({ password, emailId });
+    const { password, email } = demoUserAuth();
+    setUserInputData({ password, email });
   }
   return (
     <div className="form-parent-container">
@@ -30,7 +30,7 @@ function Login() {
             fieldName="email"
             isRequired={true}
             label="Email"
-            value={userInputData?.emailId}
+            value={userInputData?.email}
           />
 
           <PasswordInput_Form

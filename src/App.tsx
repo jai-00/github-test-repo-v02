@@ -8,8 +8,9 @@ import {
   loader as tokenAuthLoader,
   // action as formSubmitAction,
 } from "./loaders and actions/RootComponentRouterFunctions";
-// import { action as authRouterAction } from "./loaders and actions/AuthRouterFunctions";
+import { loader as authRouterLoader } from "./loaders and actions/AuthRouterFunctions";
 import { action as loginRouteAction } from "./loaders and actions/loginRouteFunctions";
+import { action as signupRouteAction } from "./loaders and actions/signupRouteFunctions";
 import { action as logoutAction } from "./loaders and actions/logoutPathFunction";
 import Dashboard from "./pages/Dashboard";
 import Auth from "./pages/Auth";
@@ -33,13 +34,7 @@ function App() {
         {
           path: "auth",
           element: <Auth />,
-          loader: () => {
-            const token = localStorage.getItem("accessToken");
-            if (token) {
-              return redirect("/dashboard");
-            }
-            return null;
-          },
+          loader: authRouterLoader,
           children: [
             {
               index: true,
@@ -55,6 +50,7 @@ function App() {
             {
               path: "signup",
               element: <Signup />,
+              action: signupRouteAction,
             },
             {
               path: "*",

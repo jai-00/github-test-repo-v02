@@ -13,13 +13,13 @@ function LoginForm(props: loginFormProps) {
   //state managing values for the input data in the form input fields
   const [userInputData, setUserInputData] = useState<{
     password: string;
-    emailId: string;
+    email: string;
   } | null>(null);
 
   //Demo account login handler function
   function demoButtonClickHandler() {
-    const { password, emailId } = demoUserAuth();
-    setUserInputData({ password, emailId });
+    const { password, email } = demoUserAuth();
+    setUserInputData({ password, email });
   }
 
   return (
@@ -28,7 +28,7 @@ function LoginForm(props: loginFormProps) {
         fieldName="email"
         isRequired={true}
         label="Email"
-        value={userInputData?.emailId}
+        value={userInputData?.email}
       />
 
       <PasswordInput_Form

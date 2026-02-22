@@ -1,19 +1,34 @@
 class User {
-    name: string;
-    id: string;
-    gender: "male" | "female" | "other";
-    age: number;
-    isEmployed:boolean;
+  email: string;
+  id: string;
+  gender: "male" | "female" | "other";
+  // age: number;
+  password: string;
+  occupation: string | "";
 
-    constructor({name, gender, age, isEmployed}: {name: string; gender: "male" | "female" | "other"; age: number; isEmployed: boolean}){
-        this.name = name;
-        this.gender = gender;
-        this.age = age;
-        this.isEmployed = isEmployed;
-        this.id = crypto.randomUUID();
-    }
+  constructor({
+    email,
+    gender,
+    occupation,
+    password,
+  }: {
+    email: string;
+    gender: "male" | "female" | "other";
+    // age: number;
+    // isEmployed: boolean;
+    password: string;
+    occupation?: string | "";
+  }) {
+    this.email = email;
+    this.gender = gender;
+    // this.age = age;
+    this.password = password;
+    this.occupation = occupation ?? "";
+    this.id = crypto.randomUUID();
+  }
 }
 
 export default User;
-export const userData: User[] = [];
-
+export const userData: User[] = JSON.parse(
+  localStorage.getItem("userData") || "[]",
+);

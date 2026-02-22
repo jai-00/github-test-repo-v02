@@ -24,7 +24,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
   const data = await response.json();
   const token = data.accessToken;
-  console.log("token: " + token);
+
   localStorage.setItem("accessToken", token);
   return redirect("/dashboard");
 }

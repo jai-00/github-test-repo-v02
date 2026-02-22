@@ -1,5 +1,6 @@
 import type { fetchFunctionOptionType } from "./types";
 import { tokenExpirationTime } from "./constants/token";
+import User, { userData } from "./userData";
 
 // type authTokenType = string;
 type authTokenType = {
@@ -52,6 +53,22 @@ const JWT_SECRET =
 // function handleTokenExpiration(token: string) {
 //   addNewToken(token);
 // }
+
+//create new users
+function createNewUser(user: {
+  email: string;
+  occupation?: string | "";
+  gender: "male" | "female" | "other";
+  password: string;
+}) {
+  const email = user.email;
+  const password = user.password;
+  const occupation = user.occupation;
+  const gender = user.gender;
+
+  userData.push(new User({ email, gender, password, occupation }));
+  localStorage.setItem("userData", JSON.stringify(userData));
+}
 
 function isTokenAuthentic(signature: string) {
   if (signature === JWT_SECRET) {
@@ -110,7 +127,8 @@ export async function fetchFunction(
     const email = enteredData.email || "";
     const password = enteredData.password || "";
 
-    const user = passwordAuthData.find((data) => data.emailId === email);
+    const user = userData.find((user) => user.email === email);
+    // const user = passwordAuthData.find((data) => data.emailId === email);
     if (!user) {
       return new Response(
         JSON.stringify({ email: "Email not found.", password: null }),
@@ -119,7 +137,7 @@ export async function fetchFunction(
         },
       );
     }
-    if (user?.password !== password) {
+    if (user.password !== password) {
       return new Response(
         JSON.stringify({ email: null, password: "Password incorrect" }),
         {
@@ -145,10 +163,62 @@ export async function fetchFunction(
     });
   }
 
+  if (url === "https://localhost:4000/signup") {
+    if (!options.body || typeof options.body !== "string") {
+      return new Response(JSON.stringify({ message: "Invalid body" }), {
+        status: 400,
+      });
+    }
+
+    const enteredData = JSON.parse(options.body) as {
+      email: string;
+      occupation?: string | "" | null;
+      gender: "male" | "female" | "other";
+      password: string;
+      conf_Password: string;
+    };
+    const email = enteredData.email || "";
+    const password = enteredData.password || "";
+    const gender = enteredData.gender || "";
+    const occupation = enteredData.occupation || "";
+
+    const user = userData.find((user) => user.email === email);
+    if (user) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(
+            new Response(JSON.stringify({ message: "User already exists" }), {
+              status: 409,
+            }),
+          );
+        }, delay);
+      });
+    }
+
+    createNewUser({ email, password, gender, occupation });
+    const token = createFakeJWT(email);
+
+    //else successful login
+    //create token and add timeout system for the token
+    //then send the token to the user along with the username
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(
+          new Response(JSON.stringify({ accessToken: token }), {
+            status: 200,
+            headers: { "Content-Type": "application/json" },
+          }),
+        );
+      }, delay);
+    });
+  }
+
   //  if (url !== "https://localhost:4000/login") {
   // return new Response("Not Found", {
   //   status: 404,
   // });
+
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(
@@ -162,14 +232,28 @@ export async function fetchFunction(
 }
 
 //Returns the Demo User Credentials
-export function demoUserAuth(): authPasswordType {
+export function demoUserAuth(): {
+  email: string;
+  occupation?: string | "";
+  gender: "male" | "female" | "other";
+  password: string;
+} {
   const randomEmailId: string = "demoUser@demoMail.com";
   const randomPassword: string = "VeryStrongPassword@123";
 
-  const demoAuthData: authPasswordType = {
-    emailId: randomEmailId,
+  const demoAuthData: {
+    email: string;
+    occupation?: string | "";
+    gender: "male" | "female" | "other";
+    password: string;
+  } = {
+    email: randomEmailId,
     password: randomPassword,
+    gender: "male",
+
+    occupation: "Teacher",
   };
-  passwordAuthData.push(demoAuthData);
+  userData.push(new User(demoAuthData));
+  // passwordAuthData.push(demoAuthData);
   return demoAuthData;
 }
