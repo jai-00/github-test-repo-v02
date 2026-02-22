@@ -7,7 +7,7 @@ export function loader() {
   if (token) {
     return redirect("/dashboard");
   }
-  return redirect("/auth");
+  return redirect("/auth/login");
 }
 
 export async function action({ request }: ActionFunctionArgs) {
